@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soigne</title>
+   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&family=Roboto:wght@400;700&display=swap');
+
+/* resets */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-text-color: #000000;
+    --secondary-text-color: blue;
+    --accent-color:rgb(17,38,31);
+    --accent-color-dark: rgb(55, 167, 192);
+    --padding-inline-section: 20px;
+}
+
+body {
+        font-family: "Permanent Marker", cursive;
+        font-weight: 400;
+        font-style: normal;
+}
+
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
+    color: var(--primary-text-color);
+    line-height: 1.8rem;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+ul {
+    list-style: none;
+}
+
+/* utility classes */
+
+.small-bold-text {
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.container {
+    max-width: 1180px;
+    margin-inline: auto;
+    padding-inline: var(--padding-inline-section);
+    overflow: hidden;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+}
+
+.hover-link {
+    color: black;
+    transition: 0.2s ease-out;
+}
+
+.hover-link:hover {
+    color: rgb(17,38,31);;
+}
+
+.primary-button {
+    background-color: var(--accent-color);
+    border-radius: 6px;
+    font-weight: 700;
+    color: white !important;
+    padding: 12px 24px;
+    box-shadow: 0 0 2px var(--secondary-text-color);
+    transition: 0.2s ease-out;
+    text-align: center;
+}
+
+.primary-button:hover {
+    background-color: var(--accent-color-dark);
+}
+
+.secondary-button {
+    border: 0.5px solid var(--secondary-text-color);
+    border-radius: 6px;
+    font-weight: 700;
+    color: var(--primary-text-color) !important;
+    padding: 12px 24px;
+    transition: 0.2s ease-out;
+}
+
+.secondary-button:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color) !important;
+}
+
+/* top banner */
+
+.top-banner {
+    background-image: url('./assets/asset\ 30.png');
+    background-color:rgb(17,38,31);
+    background-size : 300px;
+}
+
+.banner-text {
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+}
+
+/* nav bar */
+
+.main-nav {
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+.company-logo img {
+    width: 100px;
+}
+
+.nav-links {
+    flex-basis: 730px;
+}
+
+.nav-links ul {
+    justify-content: end;
+    gap: 40px;
+}
+
+.hehehe {
+    flex-basis: 730px;
+}
+.hehehe ul {
+    justify-content: center;
+    gap: 100px;
+}
+
+.nav-toggle {
+    display: none;
+}
+
+/* header section */
+
+header {
+    padding: 50px var(--padding-inline-section) 0;
+}
+
+.header-section {
+    justify-content: center;
+    gap: 50px;
+}
+
+.header-left {
+    max-width: 40vw;
+}
+
+.header-left h1 {
+    margin-top: 20px;
+}
+
+.get-started-btn {
+    margin-top: 20px;
+}
+
+.header-right video {
+    width: 100%;
+}
+
+/* companies section */
+
+.companies-header {
+    text-align: center;
+    margin-block: 30px;
+    color: var(--primary-text-color);
+}
+
+.logos {
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.logo {
+    height: 46px;
+}
+
+/* features section */
+
+.features-section {
+    padding: 80px var(--padding-inline-section) 0;
+    background-image: url(./assets/asset\ 32.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.features-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.features-heading-text {
+    margin-bottom: 20px;
+}
+
+.features-area {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.features-card {
+    flex-direction: column;
+    gap: 20px;
+    max-width: 30%;
+    text-align: center;
+}
+
+.features-card img {
+    width: 60px;
+}
+
+/* big feature section */
+
+.big-feature-section {
+    padding: 30px var(--padding-inline-section) 0;
+}
+
+.big-feature-container {
+    gap: 30px;
+}
+
+#second-big-feature {
+    flex-direction: row-reverse;
+}
+
+.feature-img img {
+    width: 100%;
+}
+.feature-img-1 img{
+    width: 100%;
+}
+
+.feature-desc {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* examples section */
+
+.examples-section {
+    padding: 80px var(--padding-inline-section)
+}
+
+.examples-header {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.examples-area {
+    justify-content: space-between;
+    margin-block: 30px;
+    flex-wrap: wrap;
+}
+
+.examples-card {
+    width: 23%;
+    position: relative;
+    height: 300px;
+    background: black;
+    background: linear-gradient(rgb(0, 0, 0, 0.1), rgb(0, 0, 0, 0.8)), url(./assets/asset\ 35.jpeg);
+    background-size: cover;
+    transition: 0.2s ease-out;
+}
+
+.examples-card:hover {
+    box-shadow: 0 0 10px #888;
+}
+
+.examples-card:nth-child(3) {
+    background: linear-gradient(rgb(0, 0, 0, 0.1), rgb(0, 0, 0, 0.8)), url(./assets/asset\ 36.jpeg);
+    background-size: cover;
+}
+
+.examples-card:nth-child(4) {
+    background: linear-gradient(rgb(0, 0, 0, 0.1), rgb(0, 0, 0, 0.8)), url(./assets/asset\ 37.jpeg);
+    background-size: cover;
+}
+
+.card-text {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    color: white;
+}
+
+/* cta section */
+
+.cta-section-container {
+    flex-direction: column;
+    gap: 30px;
+    color: white;
+    text-align: center;
+}
+
+.cta-section {
+    padding: 120px var(--padding-inline-section) 80px;
+    background-color: #183b54;
+}
+
+.cta-section-container p {
+    color: white;
+    margin-top: 20px;
+}
+
+/* footer */
+
+footer {
+    padding-block: 80px;
+    background-color: #ebf2fa;
+}
+
+.link-column {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.footer-container {
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+/* subfooter */
+
+.subfooter {
+    background-color: #b9cde4;
+    padding: var(--padding-inline-section);
+}
+
+.subfooter-container {
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+/*---Starting---*/
+.large-header-oops{
+    position: relative;
+    width: 100%;
+    background: #333;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center center;
+    z-index: 10;
+
+}
+.startingvd video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -10000;
+    width:100%;
+    height: 855px;
+    display: block;
+    box-sizing: content-box;
+}
+.main-title{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    color: rgb(252, 251, 251);
+    text-align: center;
+    top: 50%;
+    left: 50%;
+    
+}
+.demo-1 .main-title{
+    text-transform: uppercase;
+    font-size: 4.2em;
+    letter-spacing: 0.1em;
+}
+.main-title .thin{
+    font-weight: 200;
+}
+
+@media only screen and(max-width:768px) {
+    .demo-1 .main-title{
+        font-size: 3em;
+    }
+}
+.contentstr{
+    justify-content: center;
+    gap: 50px;
+    max-width: 40vw;
+    color: #ebf2fa;
+}
+.hello-bhai-idhr-kyu{
+    margin-top:160px ;
+    text-align: center;
+}
+.photo-center{
+    width: 140px;
+}
+   </style>
+</head>
+<body>
+    <!-- top banner -->
+    <div class="top-banner">
+        <div class="container">
+            <div class="small-bold-text banner-text">Welcome!! Get ready to enter the fashion world...
+            </div>
+        </div>
+    </div>
+    <!-- nav bar -->
+    <nav>
+        <div class="container main-nav flex">
+            <a href="whaatttt.html" class="company-logo">
+                <img src="Soigne.logo.jpg" alt="company logo">
+            </a>
+            <div class="nav-links" id="nav-links">
+                <ul class="flex">
+                    <li><a href="project.html" class="hover-link">Home</a></li>
+                    <li><a href="#" class="hover-link">Resources</a></li>
+                    <li><a href="#" class="hover-link">About</a></li>
+                    <li><a href="#" class="hover-link">Help</a></li>
+                    <li><a href="#" class="hover-link"></a></li>
+                    <li><a href="login.html" class="hover-link primary-button">Sign in</a></li>
+                </ul>
+            </div>
+            <a href="#" class="nav-toggle hover-link" id="nav-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </a>
+        </div>
+    </nav>
+    <!-- header section -->
+    <header>
+        <div class="container header-section flex">
+            <div class="header-left">
+                <h1>Why you are here?🤔</h1>
+                <p>Edit Folio is a platform where all the freelancers can get the job by just completing the courses according to their interest. </p>
+                <a href="get_started.html" class="primary-button get-started-btn">Get Started</a>
+            </div>
+    </header>
+    <!-- companies section -->
+    <section class="companies-section">
+        <div class="container">
+            <div class="small-bold-text companies-header">The World’s best companies rely on Edit Folio to make better decisions.</div>
+            <div class="logos flex">
+                <img class="logo" src="asset 4.png" alt="">
+                <img class="logo" src="asset 5.png" alt="">
+                <img class="logo" src="asset 6.png" alt="">
+                <img class="logo" src="asset 7.png" alt="">
+            </div>
+        </div>
+    </section>
+    <!-- features section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="features-header">
+                <h2 class="features-heading-text">Your user research Swiss Army knife</h2>
+                <a href="#" class="secondary-button">See all features <i class="fa-solid fa-right-long"></i></a>
+            </div>
+            <div class="features-area flex">
+                <div class="features-card flex">
+                    <img src="./assets/asset 11.svg" alt="">
+                    <h3>Card Sorting</h3>
+                    <p>Discover how people group and label information.</p>
+                    <a href="#" class="secondary-button">Learn More <i class="fa-solid fa-right-long"></i></a>
+                </div>
+                <div class="features-card flex">
+                    <img src="./assets/asset 13.svg" alt="">
+                    <h3>Prototype tests</h3>
+                    <p>Discover how people navigate your prototypes.</p>
+                    <a href="#" class="secondary-button">Learn more <i class="fa-solid fa-right-long"></i></a>
+                </div>
+                <div class="features-card flex">
+                    <img src="./assets/asset 14.svg" alt="">
+                    <h3>First click tests</h3>
+                    <p>Test interaction with first click and navigation tests.</p>
+                    <a href="#" class="secondary-button">Learn more <i class="fa-solid fa-right-long"></i></a>
+                </div>
+                <div class="features-card flex">
+                    <img src="./assets/asset 15.svg" alt="">
+                    <h3>Design surveys</h3>
+                    <p>Get feedback on images, videos or audio files.</p>
+                    <a href="#" class="secondary-button">Learn more <i class="fa-solid fa-right-long"></i></a>
+                </div>
+                <div class="features-card flex">
+                    <img src="./assets/asset 16.svg" alt="">
+                    <h3>Preference tests</h3>
+                    <p>Find out which courses users prefer and why.</p>
+                    <a href="#" class="secondary-button">Learn more <i class="fa-solid fa-right-long"></i></a>
+                </div>
+                <div class="features-card flex">
+                    <img src="./assets/asset 17.svg" alt="">
+                    <h3>Five second tests</h3>
+                    <p>Test comprehensibility by measuring first impressions.</p>
+                    <a href="#" class="secondary-button">Learn more <i class="fa-solid fa-right-long"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- big features section -->
+    <section class="big-feature-section">
+        <div class="container flex big-feature-container">
+            <div class="feature-img">
+                <img src="./assets/asset 18.png" alt="">
+            </div>
+            <div class="feature-desc flex">
+                <h4>EFFORTLESS VALIDATION FOR</h4>
+                <h3>PROFESSIONALS </h3>
+                <p>Test interfaces, interaction flows, iconography and more, to help you create intuitive and delightful experiences for your users.</p>
+            </div>
+        </div>
+    </section>
+    <section class="big-feature-section">
+        <div class="container flex big-feature-container" id="second-big-feature">
+            <div class="feature-img">
+                <img src="./assets/asset 21.png" alt="">
+            </div>
+            <div class="feature-desc flex">
+                <h4>AFTER COURSE COMPLETITION</h4>
+                <h3>JOB OFFERING</h3>
+                <p>Jobs(Part-time/Full-time) will be offered to the user after completing the courses and passing the tests with good grades. </p>
+            </div>
+        </div>
+    </section>
+    <section class="big-feature-section">
+        <div class="container flex big-feature-container">
+            <div class="feature-img">
+                <img src="./assets/asset 24.png" alt="">
+            </div>
+            <div class="feature-desc flex">
+                <h4>CERTIFICATION</h4>
+                <h3>OF STUDENTS</h3>
+                <p>People who complete their course get certified on their respective fields.</p>
+            </div>
+        </div>
+    </section>
+    <!-- examples section -->
+    <section class="examples-section">
+        <div class="container">
+            <div class="examples-header flex">
+                <h2 class="examples-heading-text">One platform, endless possibilities</h2>
+                <a href="#" class="secondary-button">See more examples <i class="fa-solid fa-right-long"></i></a>
+            </div>
+            <div class="examples-area flex">
+                <a href="#" class="examples-card">
+                    <h3 class="card-text">Can user complete a task in my software interface?</h3>
+                </a>
+                <a class="examples-card" href="#" style="background: linear-gradient(rgb(0, 0, 0, 0.1), rgb(0, 0, 0, 0.8)), url(./assets/asset\ 34.jpeg); background-size: cover;">
+                    <h3 class="card-text">Can users find important pages on my website?</h3>
+                </a>
+                <a class="examples-card" href="#">
+                    <h3 class="card-text">Is my website’s intended audience clear? </h3>
+                </a>
+                <a class="examples-card" href="#">
+                    <h3 class="card-text">Do visitors understand what a page is about?</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- cta section -->
+    <section class="cta-section">
+        <div class="container flex cta-section-container">
+            <h2>Start testing today</h2>
+            <p>Take the guesswork out of design decisions</p>
+            <a href="get_started.html" class="primary-button">Get Started</a>
+        </div>
+    </section>
+    <!-- footer -->
+    <footer>
+        <div class="container flex footer-container">
+            <a href="#" class="company-logo">
+                <img src="logo.png" alt="company logo">
+            </a>
+            <div class="link-column flex">
+                <h4>Product</h4>
+                <a href="#" class="hover-link">Overview</a>
+                <a href="#" class="hover-link">Pricing</a>
+                <a href="#" class="hover-link">Courses</a>
+                <a href="#" class="hover-link">Customers Page</a>
+                <a href="#" class="hover-link">Status Page</a>
+            </div>
+            <div class="link-column flex">
+                <h4>Privacy</h4>
+                <a href="#" class="hover-link">Privacy Policy</a>
+                <a href="#" class="hover-link">Users Policy</a>
+                <a href="#" class="hover-link">Terms & Conditions</a>
+                <a href="#" class="hover-link">Security Information</a>
+            </div>
+            <div class="link-column flex">
+                <h4>Make Money With Us</h4>
+                <a href="#" class="hover-link">Sell on Edit Folio</a>
+                <a href="#" class="hover-link">Become an Editor</a>
+                <a href="#" class="hover-link">Become a Tutor</a>
+                <a href="#" class="hover-link">Part Time Jobs </a>
+                <a href="#" class="hover-link">Full Time Jobs</a>
+            </div>
+            <div class="link-column flex">
+                <h4>Let us help you</h4>
+                <a href="#" class="hover-link">Your Account</a>
+                <a href="#" class="hover-link">Retuern Center</a>
+                <a href="#" class="hover-link">Help</a>
+                <a href="#" class="hover-link">Download our App</a>
+            </div>
+            <div class="link-column flex">
+                <h4>Top Tutorials</h4>
+                <a href="#" class="hover-link">Audio Editing Tutorials</a>
+                <a href="#" class="hover-link">Video Editing Tutorials</a>
+                <a href="#" class="hover-link">Graphic Designing Tutorials</a>
+                <a href="#" class="hover-link">2D/3D Animation Tutorials</a>
+                <a href="#" class="hover-link">Music Creation</a>
+            </div>
+        </div>
+    </footer>
+    <!-- subfooter -->
+    <div class="subfooter">
+        <div class="container flex subfooter-container">
+            <a class="hover-link" href="#">Privacy policy</a>
+            <a class="hover-link" href="#"></a>
+            <a class="hover-link" href="#"></a>
+            <a class="hover-link" href="#"><i class="fa-brands fa-facebook"></i></a>
+            <a class="hover-link" href="#"><i class="fa-brands fa-twitter"></i></a> 
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/c1fc3d2826.js" crossorigin="anonymous"></script>
+    <script>
+        const toggleButton = document.getElementById('nav-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        toggleButton.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        })
+    </script>
+</body>
+</html>
