@@ -1,0 +1,173 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+/* Header */
+header {
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+/* Main Section */
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 40px 20px;
+    background: linear-gradient(to right, #6a11cb, #2575fc);
+    color: white;
+    min-height: 400px;
+}
+
+.left-content {
+    max-width: 60%;
+}
+
+.left-content h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.left-content p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.cta-button {
+    background-color: #fff;
+    color: #2575fc;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.cta-button:hover {
+    background-color: #2575fc;
+    color: white;
+}
+
+/* Avatar Card */
+.avatar-card {
+    position: relative;
+    background-image: url('https://assets.onecompiler.app/42z3pp8dy/42zp7xquy/db788906-6c9b-489b-8e5e-e02d607d4bda.jfif'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    height: 600px;
+    color: white;
+    padding: 20px;
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 950px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid #000000; /* Adding border */
+}
+
+/* Adjusting the inner content of the card */
+.avatar-card .card-content {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 15px;
+    border-radius: 5px;
+}
+
+.avatar-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.avatar-card p {
+    font-size: 1rem;
+    margin-bottom: 15px;
+}
+
+.card-button {
+    background-color: #2575fc;
+    color: white;
+    padding: 10px 15px;
+    font-size: 1rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.card-button:hover {
+    background-color: #6a11cb;
+}
+
+/* Features Section */
+#features {
+    padding: 40px 20px;
+    text-align: center;
+    background: white;
+}
+
+#features h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.features-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.feature {
+    background-color: #222;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+}
+
+.feature h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.feature p {
+    font-size: 1rem;
+    color: #fffefe;
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+}
