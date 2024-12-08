@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Soignee</title>
+    <style>
+        body { 
+            
+            font-family: Arial, sans-serif; margin: 0; padding: 0; 
+        }
+        /* General styles for the header */
+        header {
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        /* About Section */
+        .about-section {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #f9f9f9;
+        }
+        .about-section h1 { font-size: 36px; }
+        .about-section p { font-size: 18px; line-height: 1.6; max-width: 800px; margin: 20px auto; }
+
+        /* Mission & Vision Section */
+        .mission-section {
+            background: linear-gradient(to right, #FF7E5F, #FEB47B);
+            color: white;
+            padding: 70px 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .mission-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .mission-section p {
+            font-size: 18px;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Our Values Section */
+        .values-section {
+            background-color: #f1f1f1;
+            padding: 70px 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+        .values-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+        .values-section p {
+            font-size: 18px;
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        /* Call to Action Section */
+        .cta-section {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            border-radius: 8px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-section h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .cta-section p {
+            font-size: 18px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .cta-button {
+            background-color: #FFD700;
+            color: #333;
+            padding: 15px 30px;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 5px;
+            margin-top: 30px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #FFC300;
+            transform: translateY(-5px);
+        }
+        /* Adding some decorative elements like lines for separation */
+        .cta-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 200%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(-50%) rotate(45deg);
+        }
+
+        /* User Reviews Section */
+        .reviews-section { padding: 50px 20px; background-color: #f4f4f4; text-align: center; }
+        .reviews-section h2 { font-size: 28px; color: #333; margin-bottom: 30px; }
+        .reviews-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+
+        /* Review Card Styles */
+        .review-card { 
+            background-color: black; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+            max-width: 300px; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+        }
+
+        .review-card p { 
+            font-size: 16px; 
+            line-height: 1.5; 
+            color: #f6f3f3; 
+            margin-bottom: 10px; 
+        }
+
+        .review-card .user-name { 
+            font-weight: bold; 
+            color: #ffffff; 
+        }
+
+        .review-card .rating { 
+            color: #FFD700; 
+            font-size: 20px; 
+        }
+
+        /* Hover Effect */
+        .review-card:hover {
+            transform: translateY(-10px); 
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        footer { 
+            background-color: #333; 
+            color: white; 
+            text-align: center; 
+            padding: 13px; 
+            width: 100%; 
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+         <header class="header">
+            <h1 class="logo">Soignée</h1>
+        <div class="container">
+            <nav>
+                <a href="about.html">About</a>
+                <a href="services.html">Services</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- About Section -->
+    <div class="about-section">
+        <h1><u>About Us</u></h1>
+        <p>
+            Welcome to Soignee, where technology meets fashion in the most innovative way! We are a team of passionate professionals dedicated to revolutionizing the online shopping experience. Our mission is to help you visualize and find the perfect outfit without ever stepping into a store.
+            With our advanced avatar creation technology, you can upload your photo, and our system will craft a personalized avatar that looks just like you. From there, you can try on clothes virtually and mix and match outfits to see what works best for your style and body type.
+            At Soignee, we believe that shopping should be an enjoyable, efficient, and personalized experience. Whether you're looking to refresh your wardrobe or explore new fashion trends, we provide the tools you need to make informed and confident style decisions.
+            Our vision is to empower everyone to shop smarter and more confidently, with a technology that brings the store experience right to your screen. Let us help you look your best — every time!
+        </p>
+    </div>
+
+    <!-- Mission & Vision Section -->
+    <div class="mission-section">
+        <h2><u>Our Mission & Vision</u></h2>
+        <p>
+            At Soignee, our mission is to revolutionize the shopping experience by offering a seamless blend of technology and style. We aim to empower users with the ability to create personalized avatars, try on clothes virtually, and confidently select the perfect outfits—whether shopping online or in-store. Our vision is to make shopping effortless, enjoyable, and tailored to each individual’s unique style, bridging the gap between physical and digital fashion. We aspire to set the standard for a future where fashion meets innovation and every shopper feels confident in their choices.        </p>
+    </div>
+
+    <!-- Our Values Section -->
+    <div class="values-section">
+        <h2><u>Our Values</u></h2>
+        <p>
+            At Soignee, we are committed to excellence, integrity, and innovation. Our principles guide every decision we make, ensuring we stay true to our core values as we serve our clients and shape the future of our industry.
+        </p>
+    </div>
+
+    <!-- User Reviews Section -->
+    <div class="reviews-section">
+        <h2>User Reviews</h2>
+        <div class="reviews-container">
+            <div class="review-card">
+                <p>
+                    "I am blown away by how easy it is to create a personalized avatar and try on clothes virtually. The process is fast, and the clothing combinations look amazing! It’s like having my own virtual stylist."
+                </p>
+                <span class="user-name">- Viru Sahastrabudhhe</span>
+                <div class="rating">★★★★★</div>
+            </div>
+            <div class="review-card">
+                <p>
+                    "This website is a game-changer! I uploaded my picture, and the avatar was created in seconds. Trying on different outfits without leaving my home has saved me so much time. I highly recommend it!
+                </p>
+                <span class="user-name">- Raju Rastogi</span>
+                <div class="rating">★★★★☆</div>
+            </div>
+            <div class="review-card">
+                <p>
+                    "I love the virtual try-on feature! It’s so much fun to experiment with clothes and see how they look on my avatar before buying. The accuracy of the avatar is impressive, and it made shopping online so much easier."
+                </p>
+                <span class="user-name">- Ranchoddas</span>
+                <div class="rating">★★★★★</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call to Action Section -->
+    <div class="cta-section">
+        <h2>Ready to Experience Soignee?</h2>
+        <p>Discover how we can help you achieve your goals with personalized solutions that bring style, elegance, and functionality to your life. Let's make your vision a reality.</p>
+        <a href="contact.html" class="cta-button">Learn More</a>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+        &copy; 2024 Soignee. All Rights Reserved.
+    </footer>
+
+</body>
+</html>
