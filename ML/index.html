@@ -1,0 +1,525 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Try-On App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .camera-section {
+            position: relative;
+        }
+
+        #video {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            border: 3px solid #667eea;
+        }
+
+        #canvas {
+            display: none;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            margin: 10px 5px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .clothing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .clothing-item {
+            border: 3px solid transparent;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: border-color 0.3s;
+            overflow: hidden;
+        }
+
+        .clothing-item:hover {
+            border-color: #667eea;
+        }
+
+        .clothing-item.selected {
+            border-color: #764ba2;
+            box-shadow: 0 0 15px rgba(118, 75, 162, 0.3);
+        }
+
+        .clothing-item img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+        }
+
+        .result-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 3px solid #667eea;
+        }
+
+        .status {
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        .status.loading {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            text-align: center;
+            margin: 10px;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎯 Virtual Try-On App</h1>
+            <p>Experience the future of fashion with AI-powered virtual fitting</p>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">📷</div>
+                <div>Real-time Camera</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🤖</div>
+                <div>AI Pose Detection</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">👔</div>
+                <div>Virtual Clothing</div>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">⚡</div>
+                <div>Instant Results</div>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <!-- Camera Section -->
+            <div class="section">
+                <h2>📹 Camera Feed</h2>
+                <video id="video" autoplay playsinline></video>
+                <canvas id="canvas"></canvas>
+                <div>
+                    <button class="btn" onclick="startCamera()">Start Camera</button>
+                    <button class="btn" onclick="captureImage()">Capture</button>
+                </div>
+                <div id="camera-status" class="status" style="display: none;"></div>
+            </div>
+
+            <!-- Clothing Selection -->
+            <div class="section">
+                <h2>👕 Select Clothing</h2>
+                <div id="clothing-grid" class="clothing-grid">
+                    <!-- Clothing items will be loaded here -->
+                </div>
+                <div id="clothing-status" class="status" style="display: none;"></div>
+            </div>
+
+            <!-- Results Section -->
+            <div class="section">
+                <h2>🎨 Try-On Result</h2>
+                <div id="result-container">
+                    <p>Select clothing and capture your image to see the magic!</p>
+                </div>
+                <div>
+                    <button class="btn" onclick="performTryOn()">Try On</button>
+                    <button class="btn" onclick="detectPose()">Detect Pose</button>
+                    <button class="btn" onclick="segmentBody()">Segment Body</button>
+                </div>
+                <div id="result-status" class="status" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let video, canvas, ctx;
+        let capturedImage = null;
+        let selectedClothing = null;
+        let stream = null;
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', function() {
+            video = document.getElementById('video');
+            canvas = document.getElementById('canvas');
+            ctx = canvas.getContext('2d');
+
+            loadClothingItems();
+        });
+
+        // Start camera
+        async function startCamera() {
+            try {
+                if (stream) {
+                    stream.getTracks().forEach(track => track.stop());
+                }
+
+                stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: { 
+                        width: { ideal: 640 },
+                        height: { ideal: 480 }
+                    } 
+                });
+                video.srcObject = stream;
+
+                showStatus('camera-status', 'Camera started successfully!', 'success');
+            } catch (error) {
+                console.error('Error starting camera:', error);
+                showStatus('camera-status', 'Error starting camera. Please allow camera access.', 'error');
+            }
+        }
+
+        // Capture image from video
+        function captureImage() {
+            if (!video.srcObject) {
+                showStatus('camera-status', 'Please start the camera first!', 'error');
+                return;
+            }
+
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            ctx.drawImage(video, 0, 0);
+
+            capturedImage = canvas.toDataURL('image/jpeg', 0.8);
+            showStatus('camera-status', 'Image captured successfully!', 'success');
+        }
+
+        // Load available clothing items
+        async function loadClothingItems() {
+            try {
+                showStatus('clothing-status', 'Loading clothing items...', 'loading');
+
+                const response = await fetch('/api/clothing-items');
+                const clothingItems = await response.json();
+
+                const grid = document.getElementById('clothing-grid');
+                grid.innerHTML = '';
+
+                if (clothingItems.length === 0) {
+                    grid.innerHTML = '<p>No clothing items available. Please add some images to the clothing_items folder.</p>';
+                    showStatus('clothing-status', 'No clothing items found', 'error');
+                    return;
+                }
+
+                clothingItems.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'clothing-item';
+                    div.onclick = () => selectClothing(item, div);
+
+                    div.innerHTML = `
+                        <img src="${item.image_path}" alt="${item.name}" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iODAiIGhlaWdodD0iODAiIHZpZXdCb3g9IjAgMCA4MCA4MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjgwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik00MCAyMEM0NC40MTgzIDIwIDQ4IDIzLjU4MTcgNDggMjhDNDggMzIuNDE4MyA0NC40MTgzIDM2IDQwIDM2QzM1LjU4MTcgMzYgMzIgMzIuNDE4MyAzMiAyOEMzMiAyMy41ODE3IDM1LjU4MTcgMjAgNDAgMjBaIiBmaWxsPSIjOUM5OTlGIi8+CjxwYXRoIGQ9Ik00MCA0MEMyOC45NTQzIDQwIDIwIDQ4Ljk1NDMgMjAgNjBWNjRINjBWNjBDNjAgNDguOTU0MyA1MS4wNDU3IDQwIDQwIDQwWiIgZmlsbD0iIzlDOTk5RiIvPgo8L3N2Zz4K'">
+                        <div style="padding: 5px; font-size: 0.8rem;">${item.name}</div>
+                    `;
+
+                    grid.appendChild(div);
+                });
+
+                showStatus('clothing-status', `${clothingItems.length} clothing items loaded`, 'success');
+            } catch (error) {
+                console.error('Error loading clothing items:', error);
+                showStatus('clothing-status', 'Error loading clothing items', 'error');
+            }
+        }
+
+        // Select clothing item
+        function selectClothing(item, element) {
+            // Remove previous selection
+            document.querySelectorAll('.clothing-item').forEach(el => {
+                el.classList.remove('selected');
+            });
+
+            // Select current item
+            element.classList.add('selected');
+            selectedClothing = item;
+            showStatus('clothing-status', `Selected: ${item.name}`, 'success');
+        }
+
+        // Perform virtual try-on
+        async function performTryOn() {
+            if (!capturedImage) {
+                showStatus('result-status', 'Please capture an image first!', 'error');
+                return;
+            }
+
+            if (!selectedClothing) {
+                showStatus('result-status', 'Please select a clothing item!', 'error');
+                return;
+            }
+
+            try {
+                showStatus('result-status', 'Processing virtual try-on...', 'loading');
+                document.getElementById('result-container').innerHTML = '<div class="loader"></div>';
+
+                const response = await fetch('/api/try-on', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        user_image: capturedImage,
+                        clothing_item_id: selectedClothing.id,
+                        clothing_type: selectedClothing.category
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    document.getElementById('result-container').innerHTML = 
+                        `<img src="${result.result_image}" alt="Try-on Result" class="result-image">`;
+                    showStatus('result-status', result.message, 'success');
+                } else {
+                    showStatus('result-status', result.error, 'error');
+                    document.getElementById('result-container').innerHTML = '<p>Try-on failed. Please try again.</p>';
+                }
+            } catch (error) {
+                console.error('Error performing try-on:', error);
+                showStatus('result-status', 'Error performing try-on', 'error');
+                document.getElementById('result-container').innerHTML = '<p>Error occurred. Please try again.</p>';
+            }
+        }
+
+        // Detect pose
+        async function detectPose() {
+            if (!capturedImage) {
+                showStatus('result-status', 'Please capture an image first!', 'error');
+                return;
+            }
+
+            try {
+                showStatus('result-status', 'Detecting pose...', 'loading');
+                document.getElementById('result-container').innerHTML = '<div class="loader"></div>';
+
+                const response = await fetch('/api/pose-detection', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        user_image: capturedImage
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    document.getElementById('result-container').innerHTML = 
+                        `<img src="${result.annotated_image}" alt="Pose Detection" class="result-image">`;
+                    const status = result.has_pose ? 'Pose detected successfully!' : 'No pose detected';
+                    showStatus('result-status', status, result.has_pose ? 'success' : 'error');
+                } else {
+                    showStatus('result-status', result.error, 'error');
+                }
+            } catch (error) {
+                console.error('Error detecting pose:', error);
+                showStatus('result-status', 'Error detecting pose', 'error');
+            }
+        }
+
+        // Segment body
+        async function segmentBody() {
+            if (!capturedImage) {
+                showStatus('result-status', 'Please capture an image first!', 'error');
+                return;
+            }
+
+            try {
+                showStatus('result-status', 'Segmenting body...', 'loading');
+                document.getElementById('result-container').innerHTML = '<div class="loader"></div>';
+
+                const response = await fetch('/api/body-segmentation', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        user_image: capturedImage
+                    })
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    document.getElementById('result-container').innerHTML = 
+                        `<img src="${result.segmented_image}" alt="Body Segmentation" class="result-image">`;
+                    const status = result.has_body ? 'Body segmented successfully!' : 'No body detected';
+                    showStatus('result-status', status, result.has_body ? 'success' : 'error');
+                } else {
+                    showStatus('result-status', result.error, 'error');
+                }
+            } catch (error) {
+                console.error('Error segmenting body:', error);
+                showStatus('result-status', 'Error segmenting body', 'error');
+            }
+        }
+
+        // Show status message
+        function showStatus(elementId, message, type) {
+            const statusEl = document.getElementById(elementId);
+            statusEl.textContent = message;
+            statusEl.className = `status ${type}`;
+            statusEl.style.display = 'block';
+
+            if (type === 'success') {
+                setTimeout(() => {
+                    statusEl.style.display = 'none';
+                }, 3000);
+            }
+        }
+
+        // Cleanup on page unload
+        window.addEventListener('beforeunload', function() {
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop());
+            }
+        });
+    </script>
+</body>
+</html>

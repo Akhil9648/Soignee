@@ -1,0 +1,28 @@
+{
+  "pose_detection": {
+    "model_complexity": 1,
+    "min_detection_confidence": 0.5,
+    "min_tracking_confidence": 0.5
+  },
+  "segmentation": {
+    "model_selection": 1,
+    "min_detection_confidence": 0.7
+  },
+  "clothing_categories": [
+    "t-shirt",
+    "dress",
+    "jacket",
+    "pants",
+    "skirt",
+    "coat",
+    "sweater",
+    "hoodie"
+  ],
+  "supported_brands": [
+    "nike",
+    "adidas",
+    "zara",
+    "h&m",
+    "uniqlo"
+  ]
+}
